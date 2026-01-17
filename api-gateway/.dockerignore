@@ -1,0 +1,17 @@
+target/
+!target/*.jar
+*.class
+*.log
+*.tmp
+.mvn/
+mvnw
+mvnw.cmd
+.idea/
+*.iml
+.settings/
+.project
+.classpath
+*.swp
+*.swo
+*~
+.DS_Store

@@ -1,0 +1,40 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:/app/config-repo/{application}
+        git:
+          # Local Git repository (for development)
+          # In production, use a remote Git repository URL
+          uri: file:///${user.home}/Desktop/microService/config-repo
+          # Alternative: Remote Git repository
+          # uri: https://github.com/your-username/config-repo
+          default-label: main
+          clone-on-start: true
+          # Search paths for configuration files
+          search-paths: '{application}'
+
+# Actuator endpoints for health checks
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
+  endpoint:
+    health:
+      show-details: always
+
+# Logging
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

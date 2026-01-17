@@ -1,0 +1,19 @@
+# Bootstrap configuration - loaded BEFORE application.yml
+# This connects to Config Server to fetch the main configuration
+
+spring:
+  application:
+    name: eureka-server
+  
+  cloud:
+    config:
+      # Config Server location
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+      # Fail fast if Config Server is not available
+      fail-fast: true
+      # Retry if Config Server is temporarily unavailable
+      retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
